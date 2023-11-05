@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Dashboard',['type_menu' => '']);
+    return view('auth.login', ['type_menu' => '']);
+});
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('home', function(){
+        return view('pages.Dashboard', ['type_menu' => '']);
+    })->name('Home');
 });
