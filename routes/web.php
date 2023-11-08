@@ -21,4 +21,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('home', function(){
         return view('pages.Dashboard', ['type_menu' => '']);
     })->name('Home');
+    Route::get('/home/admin', function(){
+        return view('pages.Dashboard', ['type_menu' => '']);
+    })->name('/home/admin');
 });

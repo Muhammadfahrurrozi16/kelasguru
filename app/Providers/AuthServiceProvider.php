@@ -9,8 +9,7 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 class AuthServiceProvider extends ServiceProvider
 {
     public static $permission = [
-        'dashboard' => ['1'],
-        'user-index' => ['1'],
+        'dashboard' => [1],
     ];
     /**
      * The model to policy mappings for the application.
@@ -26,13 +25,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // foreach (self::$permission as $features => $role){
-        //     Gate::define($features, function(User $user) use ($role){
-        //         if (in_array($user->roles, $role)) {
-        //             return true;
-        //         }
-        //     });
-        // }
         foreach (self::$permission as $features => $role) {
             Gate::define($features, function(User $user) use($role) {
                 if (in_array($user->role_id, $role)) {

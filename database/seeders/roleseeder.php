@@ -14,10 +14,10 @@ class roleseeder extends Seeder
     public function run(): void
     {
         roles::factory()->create([
-            'name' => 'admin',
+            'name' => 'superadmin',
         ]);
         roles::factory()->create([
-            'name' => 'superadmin',
+            'name' => 'admin',
         ]);
         roles::factory()->create([
             'name' => 'user',
