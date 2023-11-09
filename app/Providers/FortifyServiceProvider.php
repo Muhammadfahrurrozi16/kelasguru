@@ -16,6 +16,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\LoginResponse;
+use Laravel\Fortify\Contracts\VerifyEmailResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -43,36 +44,23 @@ class FortifyServiceProvider extends ServiceProvider
                 }
             }
         );
-        // $this->app->instance(
-        //     LoginResponse::class,
-        //     new class implements LoginResponse
-        //     {
-        //         public function toResponse($request)
-        //         {
-        //             if (Auth::user()->hasRole('super-admin')) {
-        //                 return $request->wantsJson()
-        //                     ? response()->json(['two_factor' => false])
-        //                     : redirect()->intended(config('fortify.home'));
-        //             }
+        $this->app->instance(
+            VerifyEmailResponse::class,
+            new class implements VerifyEmailResponse{
+                public function toResponse($request)
+                {
+                    return redirect('/Login');
+                }
 
-        //             if (Auth::user()->hasRole('user')) {
-        //                 return $request->wantsJson()
-        //                     ? response()->json(['two_factor' => false])
-        //                     : redirect()->intended(config('fortify.home-user'));
-        //             }
-        //             if (Auth::user()->hasRole('mobile')) {
-        //                 return $request->wantsJson()
-        //                     ? response()->json(['two_factor' => false])
-        //                     : redirect()->intended(config('fortify.home-mobile'));
-        //             }
-        //         }
-        //     }
-        // );
+            }
+        );
     }
 
     /**
      * Bootstrap any application services.
      */
+
+
     public function boot(): void
     {
         Fortify::createUsersUsing(CreateNewUser::class);
@@ -90,19 +78,15 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
-        // Fortify::authenticateUsing(function (Request $request) {
-        //     $user = User::where('email', $request->email)->first();
-        //     if ($user && Hash::check($request->password, $user->password)) {
-        //         $request->validate([
-        //             'captcha' => 'required|captcha'
-        //         ]);
-        //         return $user;
-        //     }
-        // });
-
 
         Fortify::loginView(function(){
             return view('auth.login');
+        });
+        Fortify::registerView(function(){
+            return view('auth.signup');
+        });
+        Fortify::verifyEmailView(function(){
+            return view('auth.verify');
         });
     }
 }

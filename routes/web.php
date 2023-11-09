@@ -13,15 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/Login', function () {
     return view('auth.login', ['type_menu' => '']);
 });
+Route::get('/', function(){
+    return view('Front.Home');
+});
 
-Route::middleware(['auth'])->group(function(){
+
+Route::middleware(['auth','verified'])->group(function(){
     Route::get('home', function(){
-        return view('pages.Dashboard', ['type_menu' => '']);
-    })->name('Home');
+        return view('Back.Admin.Dashboard', ['type_menu' => '']);
+    })->name('Home')->middleware();
     Route::get('/home/admin', function(){
-        return view('pages.Dashboard', ['type_menu' => '']);
+        return view('Back.Superadmin.Dashboard', ['type_menu' => '']);
     })->name('/home/admin');
 });
