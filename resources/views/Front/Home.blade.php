@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <p>hello World</p>
-</body>
+<!-- Konten yang tidak menjadi background -->
+<!doctype html>
+<html>
+    <head>
+        <title>Laravel Notify</title>
+    </head>
+    <body>
+        <div class="my-section">
+            @include('components.notify')
+        </div>
+    </body>
 </html>

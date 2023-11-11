@@ -31,10 +31,12 @@ class FortifyServiceProvider extends ServiceProvider
                 public function toResponse($request)
                 {
                     if (Auth::user()->roles_id == 1) {
+                        notify()->success('Welcome to Laravel Notify ⚡️');
                         return $request->wantsJson()
                             ? response()->json(['two_factor' => false])
                             : redirect()->intended(config('fortify.home'));
                     }elseif (Auth::user()->roles_id == 2) {
+                        notify()->success('Welcome to Laravel Notify ⚡️');
                         return $request->wantsJson()
                             ? response()->json(['two_factor' => false])
                             : redirect()->intended(config('fortify.Dashboard'));

@@ -79,6 +79,25 @@ a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fab {
   margin-left: 4px;
 }
 
+.my-section {
+  position: relative;
+  z-index: 10000; /* Atur indeks z ke nilai yang cukup tinggi */
+  float: left;
+  /* Menetapkan elemen untuk berada di sebelah kiri */
+  /* Tambahkan properti lain sesuai kebutuhan */
+}
+
+.my-section > *:first-child {
+  margin-top: -7px;
+}
+
+.grouped-rows {
+    width: 100%;
+    position: relative;
+    flex-wrap: wrap;
+    z-index: 500; /* Memastikan elemen-elemen wrap ke baris berikutnya *//* Menutupi margin negatif yang muncul dari item dalam row */
+  }
+
 .bg-primary {
   background-color: #6777ef !important;
 }

@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.10",
         "laravel/tinker": "^2.8",
+        "mckenziearts/laravel-notify": "^2.4",
         "mews/captcha": "^3.3"
     },
     "require-dev": {

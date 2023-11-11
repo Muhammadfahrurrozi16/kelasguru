@@ -24,6 +24,7 @@
     <link rel="stylesheet"
         href="{{ asset('css/components.css') }}">
 
+
     <!-- Start GA -->
     <script async
         src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
@@ -40,7 +41,6 @@
     <!-- END GA -->
 </head>
 </head>
-
 <body>
     <div id="app">
         <div class="main-wrapper">
@@ -51,12 +51,18 @@
             @include('components.sidebar')
 
             <!-- Content -->
+               <!-- Float Div -->
+        <div style="float: center; width: 100%;"> <!-- Sesuaikan lebar sesuai kebutuhan -->
+            <!-- Konten utama -->
             @yield('main')
-
+        </div>
+        <!-- Content -->
             <!-- Footer -->
             @include('components.footer')
         </div>
     </div>
+
+
 
     <!-- General JS Scripts -->
     <script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script>

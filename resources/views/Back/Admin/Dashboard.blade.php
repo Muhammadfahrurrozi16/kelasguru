@@ -14,7 +14,8 @@
             <div class="section-header">
                 <h1>Dashboard Admin</h1>
             </div>
-            <div class="row">
+                    <div class="grouped-rows">
+                <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-primary">
@@ -670,9 +671,14 @@
                     </div>
                 </div>
             </div>
+            <div class="my-section">
+                @include('components.notify')
+        </div>
+        </div>
         </section>
     </div>
 @endsection
+
 
 @push('scripts')
     <!-- JS Libraies -->

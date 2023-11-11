@@ -14,6 +14,9 @@
             <div class="section-header">
                 <h1>Dashboard</h1>
             </div>
+                <div class="my-section">
+                    @include('components.notify')
+            <div class="grouped-rows">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
@@ -670,9 +673,13 @@
                     </div>
                 </div>
             </div>
+            </div>
+            </div>
         </section>
     </div>
 @endsection
+
+@endpush
 
 @push('scripts')
     <!-- JS Libraies -->
@@ -686,3 +693,5 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/index-0.js') }}"></script>
 @endpush
+
+
