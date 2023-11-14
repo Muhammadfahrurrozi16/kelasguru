@@ -16,6 +16,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\LoginResponse;
+use Laravel\Fortify\Contracts\ProfileInformationUpdatedResponse;
+use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 use Laravel\Fortify\Contracts\VerifyEmailResponse;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -34,12 +36,12 @@ class FortifyServiceProvider extends ServiceProvider
                         notify()->success('Welcome to Laravel Notify ⚡️');
                         return $request->wantsJson()
                             ? response()->json(['two_factor' => false])
-                            : redirect()->intended(config('fortify.home'));
+                            : redirect()->intended(config('fortify.Dashboard'));
                     }elseif (Auth::user()->roles_id == 2) {
                         notify()->success('Welcome to Laravel Notify ⚡️');
                         return $request->wantsJson()
                             ? response()->json(['two_factor' => false])
-                            : redirect()->intended(config('fortify.Dashboard'));
+                            : redirect()->intended(config('fortify.home'));
                     }else {
                         return redirect()->back();
                     }
@@ -54,6 +56,18 @@ class FortifyServiceProvider extends ServiceProvider
                     return redirect('/Login');
                 }
 
+            }
+        );
+
+        $this->app->instance(
+            ProfileInformationUpdatedResponse::class,
+
+            new class implements ProfileInformationUpdatedResponse{
+                public function toResponse($request)
+                {
+                    // notify()->success('profile berhasil di update');
+                    return redirect()->back();
+                }
             }
         );
     }
