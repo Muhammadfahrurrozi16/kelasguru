@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\roles;
+use App\Models\sekolah;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +26,9 @@ class UserControllers extends Controller
      */
     public function create()
     {
-        return view('Back.Superadmin.user.create');
+        $roles = roles::all();
+        $sekolah = sekolah::all();
+        return view('Back.Superadmin.user.create',['role' => $roles, 'sekolah' => $sekolah]);
     }
 
     /**

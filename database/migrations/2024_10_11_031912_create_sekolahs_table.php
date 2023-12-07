@@ -16,7 +16,10 @@ return new class extends Migration
             $table->id();
             $table->string('nama_sekolahan');
             $table->string('alamat');
-            $table->foreignIdFor(tingkat_sekolah::class);
+            $table->foreignIdFor(tingkat_sekolah::class)
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

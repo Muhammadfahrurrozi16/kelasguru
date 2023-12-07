@@ -25,6 +25,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'roles_id',
         'bio',
         'phone',
+        'sekolah_id',
+
     ];
 
     /**
@@ -46,4 +48,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function sekolah(){
+        return $this->belongsTo(sekolah::class);
+    }
+    public function roles(){
+        return $this->belongsTo(roles::class);
+    }
 }
