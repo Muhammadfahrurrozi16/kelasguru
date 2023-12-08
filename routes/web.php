@@ -35,4 +35,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('Back.Profil', ['type_menu' => '']);
     })->name('profile.edit');
     Route::resource('user', UserControllers::class);
+    Route::get('user/delete/{id}', [UserControllers::class, 'delete'])->name('delete');
 });

@@ -114,13 +114,11 @@
                                                 @endif</div>
                                             </td>
                                             <td>
-                                                <form action="{{ route('user.destroy', $user->id) }}" method="POST">
-                                                    <a href="{{ route('user.edit', $user->id) }}"class="btn btn-sm btn-success">Edit</a>
-                                                 @csrf
-                                                 @method('DELETE')
-                                                   <button type="submit">Delete</button>
-                                                   </form>
-                                                  </form>
+                                                    <a href="{{ route('user.edit', $user->id) }}"class="btn btn-primary btn-action mr-1" data-toggle="tooltip"
+                                                        title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a data-toggle="modal" id="smallButton" data-target="#smallModal" data-attr="{{ route('delete', $user->id) }}" title="Delete" class="btn btn-danger btn-action" data-toggle="tooltip">
+                                                        <i class="fas fa-trash"></i></a>
+                                                    </a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -143,9 +141,52 @@
             </div>
         </section>
     </div>
+    <div class="modal fade" id="smallModal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="smallBody">
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
+<script>
+    // display a modal (small modal)
+    $(document).on('click', '#smallButton', function(event) {
+        event.preventDefault();
+        let href = $(this).attr('data-attr');
+        $.ajax({
+            url: href
+            , beforeSend: function() {
+                $('#loader').show();
+            },
+            // return the result
+            success: function(result) {
+                $('#smallModal').modal("show");
+                $('#smallBody').html(result).show();
+            }
+            , complete: function() {
+                $('#loader').hide();
+            }
+            , error: function(jqXHR, testStatus, error) {
+                console.log(error);
+                alert("Page " + href + " cannot open. Error:" + error);
+                $('#loader').hide();
+            }
+            , timeout: 8000
+        })
+    });
+
+</script>
     <!-- JS Libraies -->
     <script src="{{ asset('library/selectric/public/jquery.selectric.min.js') }}"></script>
 

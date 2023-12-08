@@ -102,10 +102,18 @@ class UserControllers extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $users = User::findOrFail($id);
         $users->delete();
+        notify()->success('Data User berhasil di hapus');
         return redirect('/user');
+    }
+
+    public function delete($id)
+    {
+        $users = User::find($id);
+
+        return view('Back.Superadmin.user.delete', compact('users'));
     }
 }
