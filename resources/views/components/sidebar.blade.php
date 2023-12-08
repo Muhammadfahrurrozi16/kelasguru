@@ -23,6 +23,9 @@
             <li class="nav-item">
                 <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-users"></i><span>User list</span></a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('mapel.index') }}" class="nav-link"><i class="fa-solid fa-book"></i><span>Mapel list</span></a>
+            </li>
             @endif
     </aside>
 </div>
