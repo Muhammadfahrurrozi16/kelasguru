@@ -63,6 +63,10 @@
   outline: none;
 }
 
+.resize-none {
+    resize: none;
+}
+
 a {
   color: #6777ef;
   font-weight: 500;

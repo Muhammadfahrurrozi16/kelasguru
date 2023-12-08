@@ -24,27 +24,9 @@
                     Examples and usage guidelines for form control styles, layout options, and custom components for
                     creating a wide variety of forms.
                 </p>
-                {{-- @if ($errors->any())
-                    <div class="iziToast-capsule" style="height: 0px; transition-delay: 0.2s;">
-                        <div data-izitoast-ref="1702000460840"
-                            class="iziToast iziToast-theme-light iziToast-color-red iziToast-animateInside iziToast-opened iziToast-closing fadeOut"
-                            id="SGVsbG8lMkMlMjB3b3JsZCFUaGlzJTIwYXdlc29tZSUyMHBsdWdpbiUyMGlzJTIwbWFkZSUyMGJ5JTIwaXppVG9hc3RyZWQ"
-                            style="pointer-events: none;">
-                            <div class="iziToast-body" style="padding-left: 33px;"><i
-                                    class="iziToast-icon ico-error revealIn"></i>
-                                <div class="iziToast-texts"><strong class="iziToast-title slideIn"
-                                        style="margin-right: 10px;">Error!!</strong>
-                                    <p class="iziToast-message slideIn">Terjadi kesalahan</p>
-                                </div>
-                                <div></div>
-                            </div><button type="button" class="iziToast-close"></button>
-                            <div class="iziToast-progressbar">
-                                <div style="transition: width 5000ms linear 0s; width: 0%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                @endif --}}
-                <form action="{{ route('user.store') }}" method="POST">
+                @foreach ($users as $index => $user)
+                <form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
                     <div class="col-12 mx-auto">
                         <div class="card">
@@ -58,7 +40,7 @@
                                             @error('name')
                                                 is-invalid
                                             @enderror"
-                                                placeholder="nama lengkap" name="name" value="{{ old('name') }}">
+                                                placeholder="nama lengkap" name="name" value="{{ $user->name }}">
                                             @error('name')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -71,7 +53,7 @@
                                             is-invalid
                                             @enderror"
                                                 placeholder="masukan username" name="username"
-                                                value="{{ old('username') }}">
+                                                value="{{ $user->username }}">
                                             @error('username')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -83,7 +65,7 @@
                                             @error('email')
                                             is-invalid
                                             @enderror"
-                                                placeholder="masukan email" name="email" value="{{ old('email') }}">
+                                                placeholder="masukan email" name="email" value="{{ $user->email }}">
                                             @error('email')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -96,20 +78,20 @@
                                             is-invalid
                                             @enderror"
                                                 placeholder="masukan password" name="password"
-                                                value="{{ old('password') }}">
+                                                value="{{ $user->password }}">
                                             @error('password')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label>Phone</label>
-                                            <input type="number"
+                                            <input type="text"
                                                 class="form-control
                                             @error('phone')
                                             is-invalid
                                             @enderror"
                                                 placeholder="masukan nomer telepon" name="phone"
-                                                value="{{ old('phone') }}">
+                                                value="{{ $user->phone }}">
                                             @error('phone')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -125,7 +107,7 @@
                                         is-invalid
                                     @enderror"
                                                 name="roles_id">
-                                                <option value="" disabled selected hidden>Pilih salah satu</option>
+                                                <option value="{{ $user->roles->id }}"  selected hidden>{{ $user->roles->name }}</option>
                                                 @foreach ($role as $roles)
                                                     <option value="{{ $roles->id }}"
                                                         {{ old('roles_id') == $roles->id ? 'selected' : '' }}>
@@ -145,7 +127,7 @@
                                         is-invalid
                                     @enderror"
                                                 name="sekolah_id">
-                                                <option value="" disabled selected hidden>Pilih salah satu</option>
+                                                <option value="{{ $user->sekolah->id }}"  selected hidden>{{ $user->sekolah->nama_sekolahan }}</option>
                                                 @foreach ($sekolah as $skh)
                                                     <option value="{{ $skh->id }}"
                                                         {{ old('sekolah_id') == $skh->id ? 'selected' : '' }}>
@@ -159,7 +141,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Bio</label>
-                                            <textarea class="form-control resize-none" data-height="140" name="bio">{{ old('bio') }}</textarea>
+                                            <textarea class="form-control resize-none" data-height="140" name="bio">{{ $user->bio }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -171,7 +153,7 @@
                         </div>
                     </div>
                 </form>
-
+                @endforeach
             </div>
         </section>
     </div>

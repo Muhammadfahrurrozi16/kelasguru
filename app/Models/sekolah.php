@@ -9,7 +9,7 @@ class sekolah extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id','nama_sekolah','alamat','tingkat_sekolah_id'];
+    protected $fillable = ['id','nama_sekolahan','alamat','tingkat_sekolah_id'];
 
     public function user(){
         return $this->hasMany(User::class);

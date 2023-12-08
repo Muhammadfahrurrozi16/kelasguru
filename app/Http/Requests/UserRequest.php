@@ -22,7 +22,7 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'require|unique:users|max:10',
+            'name' => 'required|unique:users',
             'username' => 'required|unique:users',
             'email' => 'required|email',
             'password' => 'required',
@@ -35,8 +35,14 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => ''
-
+            'name.required' => 'kolom nama perlu di isi',
+            'username.required' => 'kolom username perlu di isi',
+            'email.required' => 'kolom email perlu di isi',
+            'password.required' => 'kolom password perlu di isi',
+            'bio.required' => 'kolom bio perlu di isi',
+            'phone.required' => 'kolom phone perlu di isi',
+            'roles_id.required' => 'kolom role perlu di pilih',
+            'sekolah_id.required' => 'kolom sekolah perlu di pilih'
         ];
     }
 }

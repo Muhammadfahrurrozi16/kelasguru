@@ -90,6 +90,7 @@
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                         @foreach ($users as $index => $user)
                                         <tr>
@@ -112,6 +113,15 @@
                                                     Pending
                                                 @endif</div>
                                             </td>
+                                            <td>
+                                                <form action="{{ route('user.destroy', $user->id) }}" method="POST">
+                                                    <a href="{{ route('user.edit', $user->id) }}"class="btn btn-sm btn-success">Edit</a>
+                                                 @csrf
+                                                 @method('DELETE')
+                                                   <button type="submit">Delete</button>
+                                                   </form>
+                                                  </form>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </table>
@@ -127,6 +137,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="my-section">
+                @include('components.notify')
             </div>
         </section>
     </div>
