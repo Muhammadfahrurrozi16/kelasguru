@@ -87,6 +87,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Name</th>
+                                            <th>Role</th>
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Status</th>
@@ -99,6 +100,9 @@
                                             </td>
                                             <td>
                                                 {{ $user->name }}
+                                            </td>
+                                            <td>
+                                                {{ $user->roles->name }}
                                             </td>
                                             <td>
                                                 {{ $user->email }}

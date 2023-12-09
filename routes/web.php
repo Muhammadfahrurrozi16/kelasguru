@@ -38,4 +38,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('user', UserControllers::class);
     Route::resource('mapel', mapelcontrollers::class);
     Route::get('user/delete/{id}', [UserControllers::class, 'delete'])->name('delete');
+    Route::get('mapel/delete/{id}', [mapelcontrollers::class, 'delete'])->name('delete');
 });

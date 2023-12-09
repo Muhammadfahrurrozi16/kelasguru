@@ -18,9 +18,10 @@ class UserControllers extends Controller
      */
     public function index(Request $request)
     {
-        $users = DB::table('users')->when($request->input('search'), function($query,$search) {
-            $query->where('name', 'like' , '%' . $search . '%');
-        })->paginate(5);
+        $users = User::when($request->input('search'), function ($query) use ($request) {
+            return $query->where('name', 'like', '%' . $request->input('search') . '%');
+        })
+        ->paginate(5);
         return view('Back.Superadmin.user.index',compact('users'));
     }
 

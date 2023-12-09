@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\tingkat_sekolah;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +16,11 @@ return new class extends Migration
             $table->id();
             $table->string('nama_mapel');
             $table->text('keterangan');
+            $table->boolean('is_active')->default(true);
+            $table->foreignIdFor(tingkat_sekolah::class)
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

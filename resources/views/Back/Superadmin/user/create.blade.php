@@ -24,26 +24,6 @@
                     Examples and usage guidelines for form control styles, layout options, and custom components for
                     creating a wide variety of forms.
                 </p>
-                {{-- @if ($errors->any())
-                    <div class="iziToast-capsule" style="height: 0px; transition-delay: 0.2s;">
-                        <div data-izitoast-ref="1702000460840"
-                            class="iziToast iziToast-theme-light iziToast-color-red iziToast-animateInside iziToast-opened iziToast-closing fadeOut"
-                            id="SGVsbG8lMkMlMjB3b3JsZCFUaGlzJTIwYXdlc29tZSUyMHBsdWdpbiUyMGlzJTIwbWFkZSUyMGJ5JTIwaXppVG9hc3RyZWQ"
-                            style="pointer-events: none;">
-                            <div class="iziToast-body" style="padding-left: 33px;"><i
-                                    class="iziToast-icon ico-error revealIn"></i>
-                                <div class="iziToast-texts"><strong class="iziToast-title slideIn"
-                                        style="margin-right: 10px;">Error!!</strong>
-                                    <p class="iziToast-message slideIn">Terjadi kesalahan</p>
-                                </div>
-                                <div></div>
-                            </div><button type="button" class="iziToast-close"></button>
-                            <div class="iziToast-progressbar">
-                                <div style="transition: width 5000ms linear 0s; width: 0%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                @endif --}}
                 <form action="{{ route('user.store') }}" method="POST">
                     @csrf
                     <div class="col-12 mx-auto">
