@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\mapelcontrollers;
+use App\Http\Controllers\materiController;
 use App\Http\Controllers\UserControllers;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('profile.edit');
     Route::resource('user', UserControllers::class);
     Route::resource('mapel', mapelcontrollers::class);
+    Route::resource('materi', materiController::class);
     Route::get('user/delete/{id}', [UserControllers::class, 'delete'])->name('delete');
     Route::get('mapel/delete/{id}', [mapelcontrollers::class, 'delete'])->name('delete');
+    Route::get('materi/delete/{id}', [materiController::class, 'delete'])->name('delete');
 });

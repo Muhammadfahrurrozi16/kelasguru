@@ -14,4 +14,7 @@ class mapel extends Model
     public function tingkat_sekolah(){
         return $this->belongsTo(tingkat_sekolah::class);
     }
+    public function materi(){
+        return $this->hasMany(materi::class);
+    }
 }

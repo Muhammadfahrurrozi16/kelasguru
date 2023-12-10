@@ -16,7 +16,7 @@ class mapelcontrollers extends Controller
     public function index(Request $request)
     {
         $mapels = mapel::when($request->input('search'), function ($query) use ($request) {
-            return $query->where('name', 'like', '%' . $request->input('search') . '%');
+            return $query->where('nama_mapel', 'like', '%' . $request->input('search') . '%');
         })
         ->paginate(5);
         return view('Back.Superadmin.mapel.index',compact('mapels'));

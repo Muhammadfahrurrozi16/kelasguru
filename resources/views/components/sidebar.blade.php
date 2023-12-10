@@ -24,7 +24,10 @@
                 <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-users"></i><span>User list</span></a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('mapel.index') }}" class="nav-link"><i class="fa-solid fa-book"></i><span>Mapel list</span></a>
+                <a href="{{ route('materi.index') }}" class="nav-link"><i class="fas fa-book-open-reader"></i><span>Materi list</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('mapel.index') }}" class="nav-link"><i class="fas fa-book"></i><span>Mapel list</span></a>
             </li>
             @endif
     </aside>

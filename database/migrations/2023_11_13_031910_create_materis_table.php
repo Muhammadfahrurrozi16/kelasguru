@@ -14,12 +14,14 @@ return new class extends Migration
     {
         Schema::create('materis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('name');
             $table->foreignIdFor(mapel::class)
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->text('sinopsis');
             $table->longText('materi');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
